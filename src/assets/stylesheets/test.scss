@@ -1,3 +1,9 @@
+$width: 200px;
+$height: 200px;
+$margin: 16px auto 16px;
+$color-brown: brown;
+$color-blue: rgb(42, 75, 165);
+
 body {
 	width: 50%; 
 	margin-left: auto;
@@ -13,11 +19,6 @@ body {
 	display: block;
 }
 
-$width-200: 200px;
-$margin: 16px auto 16px;
-$color-brown: brown;
-$color-blue: rgb(42, 75, 165);
-
 .description {
 	font-size: 16px;
 	text-align: center;
@@ -27,8 +28,8 @@ $color-blue: rgb(42, 75, 165);
 
 .boxes {
 	display: block;
-	width: 200px;
-	height: 200px;
+	width: $width;
+	height: $height;
 	margin: $margin;
 	padding: 8px;
 	background-color: $color-brown;
@@ -47,6 +48,7 @@ $color-blue: rgb(42, 75, 165);
 	border-radius: 50%;
 }
 
+// Box Changes to triangle when hovered 
 .triangle:hover {
 	width: 0;
 	height: 0;
@@ -55,23 +57,25 @@ $color-blue: rgb(42, 75, 165);
 	border-bottom: 220px solid $color-brown;
 }
 
+//Box Changes to rectangle with hover
 .rectangle:hover {
 	width: 100px;
 	height: 200px;
 }
 
+// Border of box changes when hovered 
 .border:hover {
-	width: $width-200;
-	height: 200px;
+	width: $width;
+	height: $height;
 	margin: $margin;
 	padding: 2px;
 	border: 6px solid $color-blue;
 }
 
+// Box border stays the same, inside color changes
 .inside-color:hover {
-	width: $width-200;
-	height: 200px;
-	/*display: block;*/
+	width: $width;
+	height: $height;
 	margin: $margin;
 	padding: 2px;
 	background-color: $color-blue;
@@ -79,8 +83,9 @@ $color-blue: rgb(42, 75, 165);
 	border: 6px solid $color-brown;
 }
 
+// Inside of tube changes color with hover
 .tube {
-	width: $width-200;
+	width: $width;
 	height: 30px;
 	margin: $margin;
 	padding: 4px;
@@ -88,28 +93,23 @@ $color-blue: rgb(42, 75, 165);
 	line-height: 30px;
 	border: 4px solid $color-brown;
 	background-color: $color-brown;
+
+	&:hover {
+		background-color: white;
+	}
 }
 
-.inside-white:hover {
-	width: $width-200;
-	height: 30px;
-	margin: $margin;
-	padding: 4px;
-	border-radius: 22px;
-	line-height: 30px;
-	border: 4px solid $color-brown;
-	background-color: white;
-}
-
+// Tube changes to circle when hovered
 .big-circle:hover {
-	width: $width-200;
-	height: 200px;
+	width: $width;
+	height: $height;
 	margin: $margin;
 	padding: 4px;
 	border-radius: 50%;
 	border: 4px solid $color-brown;
 }
 
+// Tube lengthens when hovered
 .expand:hover {
 	width: 400px;
 	height: 30px;
@@ -121,19 +121,23 @@ $color-blue: rgb(42, 75, 165);
 	background-color: white;
 }
 
+// Ball rolls back & forth in a container//
 .ball-container {
 	width: 720px;
-	height: 200px;
+	height: $height;
 	position: relative;
-	}
+}
 
 .ball {
-  width:$width-200;
-  height:200px;
+  width:$width;
+  height:$height;
   border-radius: 50%;  
   background:$color-brown;
   position:absolute;
-  
+
+	&{
+  		-webkit-animation:rollingball 5s infinite;
+	}
 }
 
 @-webkit-keyframes rollingball{
@@ -142,58 +146,54 @@ $color-blue: rgb(42, 75, 165);
   100%{left:5%;}
 }
 
-
-.ball{
-  -webkit-animation:rollingball 5s infinite;
-}
-
+// Rectangle tilts when clicked
 .rectangle-tilt {
 
-	width: $width-200;
+	width: $width;
 	height: 30px;
 	margin: $margin;
 	padding: 4px;
 	border-radius: 22px;
 	line-height: 30px;
 	background-color: $color-brown;
+
+	&:active {
+		-webkit-transform: rotate(25deg);
+	}
 }
 
-.rectangle-tilt:active {
-	-webkit-transform: rotate(25deg);
+// Box Skews when hovered
+.skew {
+
+	&:hover {
+		-webkit-transform: skewY(25deg);
+	}
 }
 
-.box-2 {
-	width: $width-200;
-	height: 200px;
-	display: block;
-	margin: $margin;
-	padding: 8px;
-	background-color: $color-brown;
-	border-radius: 6px;
-}
-
-.box-2:hover {
-	-webkit-transform: skewY(25deg);
-}
-
+// Box spins when hovered 
 .spin:hover {
 	-webkit-transform: rotate(360deg);
 	transition: all 1s linear;
 }
 
+// Box changes to circle, rolls back to box
 .boxcircle-container {
 	width: 720px;
-	height: 200px;
+	height: $height;
 	position: relative;
 }
 
 .boxcircle {
-	width: $width-200;
-	height: 200px;
+	width: $width;
+	height: $height;
 	display: block;
 	background-color: $color-brown;
 	border-radius: 6px;
 	position: absolute;
+
+	.boxcircle{
+  		-webkit-animation:boxcircle 5s infinite;
+	}
 }
 
 // @-webkit-keyframes boxcircle {
@@ -206,20 +206,16 @@ $color-blue: rgb(42, 75, 165);
 //   100%{left:0%;}
 // }
 
-
-.boxcircle{
-  -webkit-animation:boxcircle 5s infinite;
-}
-
+// Just a button
 .nice-housing {
-	width: $width-200;
+	width: $width;
 	height: 100px;
 	margin: $margin;
 	position: relative;
 }
 
 .button {
-	width: $width-200;
+	width: $width;
 	height: 100px;
 	background-color: $color-blue;
 	margin: 0px auto 16px;
@@ -233,27 +229,18 @@ $color-blue: rgb(42, 75, 165);
 	text-shadow: 2px 3px 0px rgb(62, 61, 61);
 	box-shadow: 4px 7px 4px 0px rgb(174, 170, 170);
 	position: absolute;
+
+	&:hover {
+		height: 96px;
+		box-shadow:inset 4px 3px 0px 0px rgb(174, 170, 170);
+	}
+
 }
 
-.button:hover {
-	width: $width-200;
-	height: 96px;
-	background-color: $color-blue;
-	margin: 0px auto 16px auto;
-	border-radius: 12px;
-	font-family: 'Oswald', sans-serif;
-	font-weight: bold;
-	font-size: 32px;
-	color: white;
-	text-align: center;
-	line-height: 100px;
-	text-shadow: 2px 3px 0px rgb(62, 61, 61);
-	box-shadow:inset 4px 3px 0px 0px rgb(174, 170, 170);
-}
-
+// Large red button in grey housing
 .red-button {
-	width: $width-200;
-	height: 200px;
+	width: $width;
+	height: $height;
 	margin: $margin;
 	background-color: rgb(251,13,33);
 	border-radius: 50%;
@@ -261,6 +248,12 @@ $color-blue: rgb(42, 75, 165);
 	position: absolute;
 	top: 125px;
 	left: 42px;
+
+	&:hover {
+		background-color: #fb0d21;
+		border-radius: 50%;
+		box-shadow: inset 11px 7px 0px 0px rgb(174, 24, 24);
+	}
 }
 
 .button-housing {
@@ -272,61 +265,49 @@ $color-blue: rgb(42, 75, 165);
 	border-radius: 4px;
 }
 
-.red-button:hover {
-	width: $width-200;
-	height: 200px;
-	margin: $margin;
-	background-color: #fb0d21;
-	border-radius: 50%;
-	box-shadow: inset 11px 7px 0px 0px rgb(174, 24, 24);
-	position: absolute;
-	top: 125px;
-	left: 42px;
-}
 
+// Text Enlarges when hovered
 .large-text:hover { 
 	font-size: 32px;
 }
 
+// Ball rolls behind another
 .color-ball-container {
 	width: 720px;
-	height: 200px;
+	height: $height;
 	margin: $margin;
 	position: relative;
 }
 
-
-.color-ball-1 {
-	width: $width-200;
-	height: 200px;
+.color-ball-1, .color-ball-2 {
+	width: $width;
+	height: $height;
 	border-radius: 50%;
 	position: absolute;
+}
+
+.color-ball-1 {
 	left: 0;
 	background-color: yellow;
 	opacity: .6;
 }
 
 .color-ball-2 {
-	width: $width-200;
-	height: 200px;
-	border-radius: 50%;
-	position: absolute;
 	right: 0;
 	background-color: blue;
 	opacity: .2;
 }
 
-// @-webkit-keyframes color-ball{
-//   0%{left:0%;}
-//   /*50%{:100%;}*/
-//   100%{left:72%;}
-// }
-
+@-webkit-keyframes color-ball{
+  0%{left:0%;}
+  100%{left:72%;}
+}
 
 .color-ball-1{
   -webkit-animation:color-ball 5s infinite;
 }
 
+// Text Enlarges when hovered
 .big-text {
 	font-family: 'Oswald', sans-serif;
 	text-align: center;
@@ -335,6 +316,7 @@ $color-blue: rgb(42, 75, 165);
 	font-size: 32px;
 }
 
+// Font color changes when hovered
 .blue-font:hover {
 	font-family: 'Oswald', sans-serif;
 	text-align: center;
@@ -343,6 +325,7 @@ $color-blue: rgb(42, 75, 165);
 	font-size: 32px;
 	color: $color-blue;
 }
+
 
 
 
