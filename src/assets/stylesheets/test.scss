@@ -1,3 +1,8 @@
+@import "bourbon";
+
+.test {
+	@include box-sizing(border-box);
+}
 $width: 200px;
 $height: 200px;
 $margin: 16px auto 16px;
@@ -196,15 +201,15 @@ body {
 	}
 }
 
-// @-webkit-keyframes boxcircle {
-//   0%{left:0%;}
-//   5%{left:;border-radius: 50%}
-//   25%{border-radius: 50%}
-//   50%{left:70%;border-radius: 6px}
-//   55%{border-radius: 50%}
-//   75% {border-radius: 50%}
-//   100%{left:0%;}
-// }
+@-webkit-keyframes boxcircle {
+  0%{left:0%;}
+  5%{border-radius: 50%}
+  25%{border-radius: 50%}
+  50%{left:70%;border-radius: 6px}
+  55%{border-radius: 50%}
+  75% {border-radius: 50%}
+  100%{left:0%;}
+}
 
 // Just a button
 .nice-housing {
