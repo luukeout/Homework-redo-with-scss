@@ -1,8 +1,6 @@
 @import "bourbon";
 
-.test {
-	@include box-sizing(border-box);
-}
+
 $width: 200px;
 $height: 200px;
 $margin: 16px auto 16px;
@@ -31,7 +29,7 @@ body {
 	font-weight: bold;
 }
 
-.boxes {
+@mixin boxes() {
 	display: block;
 	width: $width;
 	height: $height;
@@ -39,6 +37,16 @@ body {
 	padding: 8px;
 	background-color: $color-brown;
 	border-radius: 6px;
+}
+
+.boxes {
+	@include boxes;
+}
+
+@mixin animation-container() {
+	width: 720px;
+	height: $height;
+	position: relative;
 }
 
 .color:hover {
@@ -69,23 +77,22 @@ body {
 }
 
 // Border of box changes when hovered 
-.border:hover {
-	width: $width;
-	height: $height;
-	margin: $margin;
-	padding: 2px;
-	border: 6px solid $color-blue;
+.border {
+	@include boxes;
+		&:hover {
+			padding: 2px; 
+			border: 6px solid $color-blue;
+		}
 }
 
 // Box border stays the same, inside color changes
 .inside-color:hover {
-	width: $width;
-	height: $height;
-	margin: $margin;
-	padding: 2px;
-	background-color: $color-blue;
-	border-radius: 6px;
-	border: 6px solid $color-brown;
+	@include boxes;
+		&:hover {
+			padding: 2px;
+			background-color: $color-blue;
+			border: 6px solid $color-brown;
+		}
 }
 
 // Inside of tube changes color with hover
@@ -127,10 +134,8 @@ body {
 }
 
 // Ball rolls back & forth in a container//
-.ball-container {
-	width: 720px;
-	height: $height;
-	position: relative;
+.animation-container {
+	@include animation-container;
 }
 
 .ball {
@@ -140,15 +145,13 @@ body {
   background:$color-brown;
   position:absolute;
 
-	&{
-  		-webkit-animation:rollingball 5s infinite;
-	}
+  		@include animation (rollingball 5s infinite);
 }
 
-@-webkit-keyframes rollingball{
-  0%{left:5%;}
-  50%{left:70%;}
-  100%{left:5%;}
+@include keyframes (rollingball) {
+	0%{left:5%;}
+  	50%{left:70%;}
+  	100%{left:5%;}
 }
 
 // Rectangle tilts when clicked
@@ -163,7 +166,7 @@ body {
 	background-color: $color-brown;
 
 	&:active {
-		-webkit-transform: rotate(25deg);
+		@include transform(rotate(25deg));
 	}
 }
 
@@ -171,14 +174,14 @@ body {
 .skew {
 
 	&:hover {
-		-webkit-transform: skewY(25deg);
+		@include transform(skewY(25deg));
 	}
 }
 
 // Box spins when hovered 
 .spin:hover {
-	-webkit-transform: rotate(360deg);
-	transition: all 1s linear;
+	@include transform(rotate(360deg));
+	@include transition (all 1s linear);
 }
 
 // Box changes to circle, rolls back to box
@@ -196,20 +199,19 @@ body {
 	border-radius: 6px;
 	position: absolute;
 
-	.boxcircle{
-  		-webkit-animation:boxcircle 5s infinite;
-	}
+  		@include animation(boxcircle 5s infinite);
 }
 
-@-webkit-keyframes boxcircle {
-  0%{left:0%;}
-  5%{border-radius: 50%}
-  25%{border-radius: 50%}
-  50%{left:70%;border-radius: 6px}
-  55%{border-radius: 50%}
-  75% {border-radius: 50%}
-  100%{left:0%;}
+@include keyframes(boxcircle) {
+	0%{left:0%;}
+ 	5%{border-radius: 50%;}
+ 	25%{border-radius: 50%;}
+ 	50%{left:70%;border-radius: 6px;}
+ 	55%{border-radius: 50%;}
+ 	75% {border-radius: 50%;}
+ 	100%{left:0%;}
 }
+
 
 // Just a button
 .nice-housing {
@@ -303,13 +305,13 @@ body {
 	opacity: .2;
 }
 
-@-webkit-keyframes color-ball{
-  0%{left:0%;}
-  100%{left:72%;}
+@include keyframes(color-ball) {
+ 	0%{left:0%;}
+ 	100%{left:72%;}
 }
 
-.color-ball-1{
-  -webkit-animation:color-ball 5s infinite;
+.color-ball-1 {
+ 	@include animation(color-ball 5s infinite);
 }
 
 // Text Enlarges when hovered
