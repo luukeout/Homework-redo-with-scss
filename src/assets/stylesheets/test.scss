@@ -30,7 +30,7 @@ body {
 }
 
 @mixin boxes() {
-	display: block;
+	// display: block;
 	width: $width;
 	height: $height;
 	margin: $margin;
@@ -41,6 +41,17 @@ body {
 
 .boxes {
 	@include boxes;
+}
+
+@mixin tube() {
+	width: $width;
+	height: 30px;
+	margin: $margin;
+	padding: 4px;
+	border-radius: 22px;
+	line-height: 30px;
+	border: 4px solid $color-brown;
+	background-color: $color-brown;
 }
 
 @mixin animation-container() {
@@ -97,18 +108,10 @@ body {
 
 // Inside of tube changes color with hover
 .tube {
-	width: $width;
-	height: 30px;
-	margin: $margin;
-	padding: 4px;
-	border-radius: 22px;
-	line-height: 30px;
-	border: 4px solid $color-brown;
-	background-color: $color-brown;
-
-	&:hover {
-		background-color: white;
-	}
+	@include tube;
+		&:hover {
+			background-color: white;	
+		}
 }
 
 // Tube changes to circle when hovered
@@ -124,12 +127,6 @@ body {
 // Tube lengthens when hovered
 .expand:hover {
 	width: 400px;
-	height: 30px;
-	margin: $margin;
-	padding: 4px;
-	border-radius: 22px;
-	line-height: 30px;
-	border: 4px solid $color-brown;
 	background-color: white;
 }
 
@@ -139,11 +136,11 @@ body {
 }
 
 .ball {
-  width:$width;
-  height:$height;
-  border-radius: 50%;  
-  background:$color-brown;
-  position:absolute;
+  	position:absolute;
+ 	width:$width;
+  	height:$height;
+  	border-radius: 50%;  
+  	background:$color-brown;
 
   		@include animation (rollingball 5s infinite);
 }
@@ -172,7 +169,6 @@ body {
 
 // Box Skews when hovered
 .skew {
-
 	&:hover {
 		@include transform(skewY(25deg));
 	}
@@ -185,19 +181,11 @@ body {
 }
 
 // Box changes to circle, rolls back to box
-.boxcircle-container {
-	width: 720px;
-	height: $height;
-	position: relative;
-}
-
 .boxcircle {
-	width: $width;
-	height: $height;
-	display: block;
-	background-color: $color-brown;
-	border-radius: 6px;
-	position: absolute;
+	@include boxes;
+			position: absolute;
+			padding: 0;
+			margin: 0;
 
   		@include animation(boxcircle 5s infinite);
 }
@@ -212,20 +200,20 @@ body {
  	100%{left:0%;}
 }
 
-
 // Just a button
 .nice-housing {
+	position: relative;
 	width: $width;
 	height: 100px;
 	margin: $margin;
-	position: relative;
 }
 
 .button {
+	position: absolute;
 	width: $width;
 	height: 100px;
-	background-color: $color-blue;
 	margin: 0px auto 16px;
+	background-color: $color-blue;
 	border-radius: 12px;
 	font-family: 'Oswald', sans-serif;
 	font-weight: bold;
@@ -235,26 +223,32 @@ body {
 	line-height: 100px;
 	text-shadow: 2px 3px 0px rgb(62, 61, 61);
 	box-shadow: 4px 7px 4px 0px rgb(174, 170, 170);
-	position: absolute;
 
 	&:hover {
 		height: 96px;
 		box-shadow:inset 4px 3px 0px 0px rgb(174, 170, 170);
 	}
-
 }
 
 // Large red button in grey housing
+.button-housing {
+	position: relative;
+	width: 300px;
+	height: 500px;
+	margin: $margin;
+	background-color: #596a72;
+	border-radius: 4px;
+}
 .red-button {
+	position: absolute;
+	top: 125px;
+	left: 42px;
 	width: $width;
 	height: $height;
 	margin: $margin;
 	background-color: rgb(251,13,33);
 	border-radius: 50%;
 	box-shadow: 11px 7px 0px 0px rgb(249, 98, 98);
-	position: absolute;
-	top: 125px;
-	left: 42px;
 
 	&:hover {
 		background-color: #fb0d21;
@@ -263,34 +257,17 @@ body {
 	}
 }
 
-.button-housing {
-	width: 300px;
-	height: 500px;
-	margin: $margin;
-	background-color: #596a72;
-	position: relative;
-	border-radius: 4px;
-}
-
-
 // Text Enlarges when hovered
 .large-text:hover { 
 	font-size: 32px;
 }
 
 // Ball rolls behind another
-.color-ball-container {
-	width: 720px;
-	height: $height;
-	margin: $margin;
-	position: relative;
-}
-
 .color-ball-1, .color-ball-2 {
+	position: absolute;
 	width: $width;
 	height: $height;
 	border-radius: 50%;
-	position: absolute;
 }
 
 .color-ball-1 {
